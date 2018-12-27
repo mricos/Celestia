@@ -20,7 +20,7 @@ protected:
 public:
     virtual Selection toSelection();
     bool addToCategory(UserCategory*);
-    bool addToCategory(const std::string&, bool = false);
+    bool addToCategory(const std::string&, bool = false, const std::string &domain = std::string());
     bool removeFromCategory(UserCategory*);
     bool removeFromCategory(const std::string&);
     bool isInCategory(UserCategory*) const;

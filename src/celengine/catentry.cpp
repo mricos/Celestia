@@ -1,4 +1,5 @@
 
+#include <celutil/util.h>
 #include "catentry.h"
 #include "category.h"
 
@@ -82,8 +83,15 @@ bool CatEntry::loadCategories(Hash *hash)
 {
     const char *d = nullptr;
     std::string td;
+    std::string tdir;
+    hash->getString("TranslationDirectory", tdir);
     if (hash->getString("TranslationDomain", td) && !td.empty())
+    {
+        if (!tdir.empty())
+            if (bindtextdomain(td.c_str(), tdir.c_str()) == nullptr)
+                return false;
         d = td.c_str();
+    }
     std::string cn;
     if (hash->getString("Category", cn))
     {
